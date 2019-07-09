@@ -1,7 +1,15 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+const React = require("react")
+const { RendererProvider } = require("react-fela")
+const { createRenderer } = require("fela")
 
-// You can delete this file if you're not using it
+exports.wrapRootElement = ({ element }) => {
+  let config
+  try {
+    config = require(`./fela.config.js`)
+  } catch (e) {
+    console.log(e)
+  }
+  const renderer = createRenderer(config)
+
+  return <RendererProvider renderer={renderer}>{element}</RendererProvider>
+}
