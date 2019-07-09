@@ -8,11 +8,13 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import { connect as connectFela } from "react-fela"
+
 import FelaProvider from "./FelaProvider"
-
 import Header from "./Header"
+import { wrapper } from "./Layout.style"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, styles }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -26,14 +28,7 @@ const Layout = ({ children }) => {
   return (
     <FelaProvider>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
+      <div className={styles.wrapper}>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
@@ -46,7 +41,12 @@ const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
+  styles: PropTypes.shape({
+    wrapper: PropTypes.string,
+  }).isRequired,
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default connectFela({
+  wrapper,
+})(Layout)

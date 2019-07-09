@@ -1,29 +1,15 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import { connect as connectFela } from "react-fela"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
+import { header, content, title, link } from "./Header.style"
+
+const Header = ({ siteTitle, styles }) => (
+  <header className={styles.header}>
+    <div className={styles.content}>
+      <h1 className={styles.title}>
+        <Link to="/" className={styles.link}>
           {siteTitle}
         </Link>
       </h1>
@@ -33,10 +19,20 @@ const Header = ({ siteTitle }) => (
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
+  styles: PropTypes.shape({
+    header: PropTypes.string,
+    content: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
 }
 
 Header.defaultProps = {
   siteTitle: ``,
 }
 
-export default Header
+export default connectFela({
+  header,
+  content,
+  title,
+  link,
+})(Header)

@@ -5,5 +5,6 @@ export default {
   colors: {
     black: "#000",
     white: "#FFF",
+    primary: "rebeccapurple",
   },
 }
