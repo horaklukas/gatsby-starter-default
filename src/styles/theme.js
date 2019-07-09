@@ -1,6 +1,6 @@
 export default {
   font: {
-    family: "Verdana, sans-serif",
+    family: "Lato, Verdana, sans-serif",
   },
   colors: {
     black: "#000",
