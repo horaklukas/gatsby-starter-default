@@ -1,13 +1,15 @@
-import unitPlugin from "fela-plugin-unit"
-import namedKeysPlugin from "fela-plugin-named-keys"
+const unitPlugin = require("fela-plugin-unit").default
+const namedKeysPlugin = require("fela-plugin-named-keys").default
 
 const defaultUnit = "px"
 
 const namedKeys = {
-  // You can use some commonly used keys, like breakpoints and then use them in styles definitions
-  // min768px: '@media (min-width: 768px)',
+  // You can use some commonly used keys, eg. breakpoints and then use
+  // them in styles definitions, see Header.style for usage example
+  min768px: "@media (min-width: 768px)",
 }
 
-export default {
+module.exports = {
   plugins: [unitPlugin(defaultUnit), namedKeysPlugin(namedKeys)],
+  devMode: process.env.NODE_ENV !== "production",
 }

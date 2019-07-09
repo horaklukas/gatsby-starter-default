@@ -1,5 +1,5 @@
 const React = require("react")
-const { Provider } = require("react-fela")
+const { RendererProvider } = require("react-fela")
 const { createRenderer } = require("fela")
 
 exports.wrapRootElement = ({ element }) => {
@@ -11,5 +11,5 @@ exports.wrapRootElement = ({ element }) => {
   }
   const renderer = createRenderer(config)
 
-  return <Provider renderer={renderer}>{element}</Provider>
+  return <RendererProvider renderer={renderer}>{element}</RendererProvider>
 }
