@@ -6,7 +6,10 @@ import Layout from "../components/Layout"
 import Image from "../components/Image"
 import SEO from "../components/Seo"
 
-import { imageSection } from "./index.style"
+export const imageSection = () => ({
+  maxWidth: `300px`,
+  marginBottom: `1.45rem`,
+})
 
 const IndexPage = ({ styles }) => (
   <Layout>
